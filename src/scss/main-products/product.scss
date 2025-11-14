@@ -1,0 +1,22 @@
+.product{
+    position: relative;
+    &__title{
+        color: #454545;
+        font-size: 13px;
+        margin-bottom: 10px;
+        & a{
+            &:before{
+                content: "";
+                position: absolute;
+                left: 0;
+                top: 0;
+                right: 0;
+                bottom: 0;
+            }
+        }
+    }
+    &__price{
+        font-weight: 700;
+        font-size: 13px;
+    }
+}

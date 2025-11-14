@@ -1,0 +1,145 @@
+:root {
+  --swiper-pagination-bullet-horizontal-gap: 12px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Jost";
+  font-weight: 500;
+  font-size: 20px;
+  background-color: #fff;
+}
+
+.container {
+  --container-max-width: 1600px;
+  --container-padding: 15px;
+  --gutter: 30px;
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+  &-narrow {
+    max-width: 1406px;
+  }
+}
+
+img {
+  max-width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+.btn-reset {
+  border: none;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 0 !important;
+  border: 0 !important;
+  height: 1px !important;
+  width: 1px !important;
+  overflow: hidden;
+}
+
+.main-link {
+  position: relative;
+  color: #000;
+  &:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background-color: currentColor;
+    opacity: 0;
+  }
+  &:hover {
+    &:before {
+      opacity: 1;
+      transition: opacity 0.3s;
+    }
+    //md
+    @media (max-width: (1200px)) {
+      &::before {
+        opacity: 0;
+      }
+    }
+  }
+  &--white {
+    color: white;
+  }
+}
+
+.quantity {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 25px;
+  padding: 0 5px;
+  min-width: 16px;
+  height: 16px;
+  font-weight: 700;
+  font-size: 10px;
+  color: #fff;
+  background-color: #000;
+}
+
+.custom-checkbox {
+  display: inline-block;
+  cursor: pointer;
+  user-select: none;
+  &__text {
+    position: relative;
+    color: #858585;
+    font-size: 13px;
+    padding-left: 20px;
+    &:before{
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 2px;
+      width: 11px;
+      height: 11px;
+      border: 2px solid #aaa;
+    }
+    &:after{
+      content: "\2713";
+      position: absolute;
+      left: 3px;
+      top: 0;
+      width: 11px;
+      height: 11px;
+    }
+  }
+  &__input{
+    &:checked + span{
+      color: green;
+      &:before{
+        color: green;
+      }
+      &:after{
+        color: green;
+      }
+    }
+  }
+}

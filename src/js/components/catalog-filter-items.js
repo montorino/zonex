@@ -2,7 +2,7 @@ const $catalogFilterItems = document.querySelectorAll(".catalog-filter--item");
 const $catalogChoice = document.querySelector(".catalog-choice");
 
 const createChoiceItem = (text) => {
-  return `<button class="btn-reset catalog-choice__item">
+  return `<button class="btn-reset catalog-choice__item" data-choice-text="${text}">
         ${text}
         <svg
           height="329pt"
@@ -17,6 +17,8 @@ const createChoiceItem = (text) => {
       </button>`;
 };
 
+//Adding categories from Categories List
+
 $catalogFilterItems.forEach((el) => {
   el.querySelector("input").addEventListener("change", (e) => {
     let checked = el.querySelector("input").checked;
@@ -26,12 +28,13 @@ $catalogFilterItems.forEach((el) => {
         "custom-checkbox--active"
       );
       let text = el.querySelector(".custom-checkbox__text").textContent;
-      $catalogChoice.insertAdjacentHTML('afterbegin', createChoiceItem(text))
-      
+      $catalogChoice.insertAdjacentHTML("afterbegin", createChoiceItem(text));
     } else {
       el.querySelector(".custom-checkbox").classList.remove(
         "custom-checkbox--active"
       );
+      let text = el.querySelector(".custom-checkbox").dataset.text;
+      document.querySelector(`[data-choice-text="${text}"]`).remove();
     }
 
     let activeCheckboxes = document.querySelectorAll(
@@ -45,7 +48,36 @@ $catalogFilterItems.forEach((el) => {
   });
 });
 
+//Removing categories from Category List
 
-$catalogChoice.addEventListener('click', (e)=>{
+$catalogChoice.addEventListener("click", (e) => {
+  if (e.target.classList.contains("catalog-choice__item")) {
+    e.target.remove();
+    let text = e.target.textContent.trimLeft().trimRight();
+    document
+      .querySelector(`[data-text="${text}"]`)
+      .querySelector("input").checked = false;
+    document
+      .querySelector(`[data-text="${text}"]`)
+      .classList.remove("custom-checkbox--active");
+  }
+  if (e.target.classList.contains("catalog-choice__clear")) {
+    Array.from(e.currentTarget.children).forEach((el) => {
+      if (!el.classList.contains("catalog-choice__clear")) {
+        el.remove();
+      }
 
-})
+      $catalogFilterItems.forEach((el) => {
+        el.querySelector("input").checked = false;
+        el.querySelector(".custom-checkbox").classList.remove(
+          "custom-checkbox--active"
+        );
+      });
+    });
+    e.currentTarget.style.display = "none";
+  }
+
+  if (e.currentTarget.children.length === 1) {
+    e.currentTarget.style.display = "none";
+  }
+});

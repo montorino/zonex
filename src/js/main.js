@@ -44,8 +44,10 @@ import "../scss/catalog-page/hero.scss";
 //------------CATALOG CONTENT------------------//
 
 import "../scss/catalog-page/breadcrumbs.scss";
-import "../scss/catalog-page/catalog-filter.scss";
+import "../scss/catalog-page/catalog-filters.scss";
 import "../scss/catalog-page/catalog-grid.scss";
+import "../scss/catalog-page/custom-select.scss";
 import "./components/catalog-filter-toggle";
 import "./components/catalog-props";
 import "./components/catalog-filter-items";
+import "./components/custom-select";
